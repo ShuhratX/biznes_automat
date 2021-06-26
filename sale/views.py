@@ -1,9 +1,28 @@
-from rest_framework import generics
-
+from rest_framework import generics, status
+from rest_framework.response import Response
+from income.models import Income
+from loan.models import Loan
+from product.models import Product
 from sale.models import Sale
 from sale.serializers import SaleSerializer
 
 
-class SaleCreateView(generics.CreateAPIView):
+class SaleCreateView(generics.GenericAPIView):
     serializer_class = SaleSerializer
-    queryset = Sale.objects.all()
+
+    @staticmethod
+    def post(request):
+        count = int(request.data.get('count'))
+        paid = str(request.data.get('paid')).capitalize()
+        partner = request.data.get('partner')
+        product = request.data.get('product')
+        prod = Product.objects.get(id=product)
+        summa = prod.price * count
+        base = f"{prod.name} sotuvi"
+        if paid == 'None':
+            paid = False
+            Loan.objects.create(variation = 'debit', base=base, summa=summa, partner_id=partner, closed=False)
+        else:
+            Income.objects.create(summa=summa, partner_id=partner, base=base)
+        Sale.objects.create(count=count, paid=paid, partner_id=partner, product_id=product, summa=summa)
+        return Response("Muvaffaqiyatli", status=status.HTTP_200_OK)
