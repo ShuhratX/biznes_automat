@@ -28,14 +28,16 @@ class Worker(models.Model):
 
 
 class Loan(models.Model):
+    TYPE_CHOICES = (('debit', 'Debitor'), ('kredit', 'Kreditor'),)
     base = models.CharField(max_length=255, verbose_name="Asos")
     summa = models.PositiveIntegerField(verbose_name="Summa")
     closed = models.BooleanField(default=False, verbose_name="Yopilgan")
     partner = models.ForeignKey(Partner, verbose_name="Hamkor", on_delete=models.CASCADE)
+    variation = models.CharField(max_length=15, choices=TYPE_CHOICES)
 
 
 class Expense(models.Model):
     summa = models.PositiveIntegerField(verbose_name="Summa")
     base = models.CharField(max_length=255, verbose_name="Asos")
-    partner = models.ForeignKey(Partner, verbose_name="Hamkor", on_delete=models.CASCADE)
-    worker = models.ForeignKey(Worker, verbose_name="Ishchi", on_delete=models.CASCADE)
+    partner = models.ForeignKey(Partner, verbose_name="Hamkor", null=True, on_delete=models.CASCADE)
+    worker = models.ForeignKey(Worker, verbose_name="Ishchi", null=True, on_delete=models.CASCADE)
