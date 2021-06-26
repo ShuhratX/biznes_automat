@@ -39,4 +39,3 @@ class Expense(models.Model):
     base = models.CharField(max_length=255, verbose_name="Asos")
     partner = models.ForeignKey(Partner, verbose_name="Hamkor", on_delete=models.CASCADE)
     worker = models.ForeignKey(Worker, verbose_name="Ishchi", on_delete=models.CASCADE)
-
