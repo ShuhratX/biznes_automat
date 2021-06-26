@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'product',
     'partner',
     'expense',
+    'income',
     'loan',
     'worker',
     'sale',
