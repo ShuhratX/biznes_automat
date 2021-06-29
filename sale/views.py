@@ -19,10 +19,10 @@ class SaleCreateView(generics.GenericAPIView):
         prod = Product.objects.get(id=product)
         summa = prod.price * count
         base = f"{prod.name} sotuvi"
-        if paid == 'None':
+        if paid == 'True':
+            Income.objects.create(summa=summa, partner_id=partner, base=base)
+        else:
             paid = False
             Loan.objects.create(variation = 'debit', base=base, summa=summa, partner_id=partner, closed=False)
-        else:
-            Income.objects.create(summa=summa, partner_id=partner, base=base)
         Sale.objects.create(count=count, paid=paid, partner_id=partner, product_id=product, summa=summa)
         return Response("Muvaffaqiyatli", status=status.HTTP_200_OK)
