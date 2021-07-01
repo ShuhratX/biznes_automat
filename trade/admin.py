@@ -1,5 +1,5 @@
 from django.contrib import admin
-from sale.models import Sale
+from trade.models import Sale
 
 
 class SaleAdmin(admin.ModelAdmin):

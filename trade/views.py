@@ -3,8 +3,8 @@ from rest_framework.response import Response
 from income.models import Income
 from loan.models import Loan
 from product.models import Product
-from sale.models import Sale
-from sale.serializers import SaleSerializer
+from trade.models import Sale
+from trade.serializers import SaleSerializer
 
 
 class SaleCreateView(generics.GenericAPIView):

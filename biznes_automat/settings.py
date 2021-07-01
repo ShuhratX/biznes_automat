@@ -9,12 +9,15 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
+import sys
 import os
 from pathlib import Path
 from environs import Env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+sys.path.append("C:/Users/shuhr/AppData/Local/Programs/Python/Python38/Lib/site-packages")
 
 env = Env()
 env.read_env()
@@ -47,7 +50,7 @@ INSTALLED_APPS = [
     'income',
     'loan',
     'worker',
-    'sale',
+    'trade',
     'rest_framework',
 ]
 
