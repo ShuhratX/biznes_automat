@@ -1,9 +1,10 @@
 from django.urls import path
-from .views import SaleCreateView
+from .views import SaleCreateView, PurchaseCreateView
 
 
 urlpatterns = [
 
-    path('create', SaleCreateView.as_view()),
+    path('sale-create', SaleCreateView.as_view()),
+    path('purchase-create', PurchaseCreateView.as_view()),
 
 ]

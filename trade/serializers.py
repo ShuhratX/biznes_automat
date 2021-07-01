@@ -6,3 +6,9 @@ class SaleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sale
         fields = '__all__'
+
+
+class PurchaseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Purchase
+        fields = '__all__'
